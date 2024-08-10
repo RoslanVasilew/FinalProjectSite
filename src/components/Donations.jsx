@@ -210,7 +210,7 @@ function Donations({ isOpen, onClose, user }) {
               }}
               required
             >
-              <option value="הצפון">צפון</option>
+              <option value="הצפון">הצפון</option>
               <option value="השרון">השרון</option>
               <option value="המרכז">המרכז</option>
               <option value="הדרום">הדרום</option>
