@@ -15,6 +15,21 @@ import axios from 'axios';
 import { SITE_URL } from '../main';
 import dayjs from 'dayjs';
 
+const seasons = {
+  'Summer': 'קיץ',
+  'winter': 'חורף',
+  'Fall': 'סתיו',
+  'Spring': 'אביב'
+};
+
+
+const regions = {
+  'North': 'מרכז',
+  'HaSharon': 'שרון',
+  'Center': 'מרכז',
+  'South': 'דרום'
+};
+
 const uniqueDescValuesDict = {
   'Peppers': 'פלפלים',
   'Grapefruits': 'אשכוליות',
@@ -92,7 +107,7 @@ function Donations({ isOpen, onClose, user }) {
   const [amount, setAmount] = useState('');
   const [method, setMethod] = useState('');
   const [region, setRegion] = useState('');
-  const [cropType, setCropType] = useState('');
+  const [Crop, setCrop] = useState('');
   const [selectedDate, setSelectedDate] = useState(null);
 
   const handleSubmit = async (event) => {
@@ -100,7 +115,7 @@ function Donations({ isOpen, onClose, user }) {
 
     try {
       const donationData = {
-        description: cropType,
+        description: Crop,
         city: city,
         district: region,
         amountKG: amount,
@@ -136,18 +151,22 @@ function Donations({ isOpen, onClose, user }) {
     try {
       const predictionData = {
         date: selectedDate ? dayjs(selectedDate).format('DD-MM-YYYY') : '',
-        cropType: cropType,
+        crop: Crop,
         region: region,
       };
 
       // Make an API call to get the prediction
-      const response = await axios.post(SITE_URL + '/api/Predictions/get', predictionData);
+      const response = await axios.post('https://crops-wrxx.onrender.com/predict', predictionData);
 
       if (response.status === 200) {
+        let season = response.data['predictions']['season'];
+        let crop = response.data['predictions']['crop'];
+        let region = response.data['predictions']['region'];
+        let amount = response.data['predictions']['amount']
         Swal.fire({
           icon: 'success',
-          title: 'הניבוי התקבל בהצלחה!',
-          text: `ניבוי: ${response.data.prediction}`, // Display the prediction result
+          text: `בעונת ה${seasons[season]} באזור ה${regions[region]} צפויים להתקבל ${Math.floor(amount)} ק"ג של ${uniqueDescValuesDict[crop]}`,
+          title: `ניבוי`, // Display the prediction result
           showConfirmButton: true,
         });
         onClose(); // Close the modal after a successful submission
@@ -155,10 +174,10 @@ function Donations({ isOpen, onClose, user }) {
         throw new Error('Failed to get prediction');
       }
     } catch (error) {
+      onClose();
       Swal.fire({
         icon: 'error',
-        title: 'תקלה בקבלת הניבוי',
-        text: error.message
+        title: 'אין מספיק נתונים כדי לנבא'
       });
     }
   };
@@ -227,8 +246,8 @@ function Donations({ isOpen, onClose, user }) {
               variant="outlined"
               margin="normal"
               fullWidth
-              value={cropType}
-              onChange={(e) => setCropType(e.target.value)}
+              value={Crop}
+              onChange={(e) => setCrop(e.target.value)}
               SelectProps={{
                 native: true,
               }}
@@ -275,10 +294,11 @@ function Donations({ isOpen, onClose, user }) {
               }}
               required
             >
-              <option value="הצפון">צפון</option>
-              <option value="השרון">השרון</option>
-              <option value="המרכז">המרכז</option>
-              <option value="הדרום">הדרום</option>
+              <option value=""></option>
+              <option value="North">צפון</option>
+              <option value="HaSharon">השרון</option>
+              <option value="Center">המרכז</option>
+              <option value="South">הדרום</option>
             </TextField>
             <TextField
               select
@@ -286,26 +306,27 @@ function Donations({ isOpen, onClose, user }) {
               variant="outlined"
               margin="normal"
               fullWidth
-              value={cropType}
-              onChange={(e) => setCropType(e.target.value)}
+              value={Crop}
+              onChange={(e) => setCrop(e.target.value)}
               SelectProps={{
                 native: true,
               }}
               required
             >
-              <option value="">בחר את סוג המזון</option>
-              {Object.entries(uniqueDescValuesDict).map(([key, value]) => (
-                <option key={key} value={value}>
-                  {value}
-                </option>
-              ))}
+              <option value=""></option>
+              <option value="Potatoes">תפוחי אדמה</option>
+              <option value="Cucumbers">מלפפונים</option>
+              <option value="Peppers">פלפלים</option>
+              <option value="Tomatoes">עגבניות</option>
+              <option value="Clementines">קלמנטינות</option>
+
             </TextField>
             <DialogActions>
               <Button onClick={onClose} color="secondary">
                 בטל
               </Button>
               <Button type="submit" color="primary">
-                אשר ניבוי
+                בדוק ניבוי
               </Button>
             </DialogActions>
           </form>
