@@ -17,7 +17,7 @@ import dayjs from 'dayjs';
 
 const seasons = {
   'Summer': 'קיץ',
-  'winter': 'חורף',
+  'Winter': 'חורף',
   'Fall': 'סתיו',
   'Spring': 'אביב'
 };
