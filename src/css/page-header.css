@@ -1,0 +1,98 @@
+.page-header {
+    display: flex;
+    flex-direction: column; /* Updated to column direction */
+    margin-top: 75px;
+    background-image: url('/src/assets/bg5.jpg');
+    background-size: cover;
+    background-position: center;
+    border-radius: 5px;
+    padding: 20px;
+    color: white;
+    font-size: 24px;
+    width: 100%;
+    max-width: 95%;
+    margin: 0 auto;
+    margin-top: 80px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    height: 40vh;
+    
+  }
+  
+  .page-header-content {
+    padding: 10px;
+  }
+  
+  .page-header-text {
+    font-size: 18px;
+  }
+  
+  .text-box {
+    color: rgb(243, 243, 243);
+    padding: 15px;
+    border-radius: 30px;
+    margin-bottom: 20px; /* Add space between text-box and vision section */
+  }
+  
+  .page-header-vision {
+    width: 60%;
+    background-image: url('/src/assets/bg2.jpg');
+    background-size: cover;
+    background-position: center;
+    border-radius: 10px;
+    height:300px;
+    margin-left:30px;
+  }
+
+  .page-header-vision2 {
+    width: 85%;
+    background-image: url('/src/assets/bg3.jpg');
+    background-size: cover;
+    background-position: center;
+    border-radius: 10px;
+    height:300px;
+    margin-left:30px;
+  }
+
+  .page-header-vision3 {
+    width: 85%;
+    background-image: url('/src/assets/bg6.jpg');
+    background-size: cover;
+    background-position: center;
+    border-radius: 10px;
+    height:300px;
+    margin-left:30px;
+  }
+  
+  .vision-text {
+    padding: 10px;
+    border-radius: 10px;
+    color: rgb(0, 0, 0);
+    font-size: 20px;
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
+    display: flex;
+  }
+
+  .title {
+    font-weight: 600;
+  }
+  
+  .first-pic-text-box{
+    padding:20px;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .second-pic-text-box {
+    padding:20px;
+    display:flex;
+    justify-content: space-between;
+  }
+
+  .Cards-section {
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin:30px;
+  }
