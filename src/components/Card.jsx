@@ -4,6 +4,9 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { Button, CardActionArea, CardActions } from '@mui/material';
+import img1 from '/src/assets/bg1.jpg';
+import img2 from '/src/assets/bg4.jpg';
+import img3 from '/src/assets/bg3.jpg';
 
 
 export default function MultiActionAreaCard() {
@@ -13,8 +16,8 @@ export default function MultiActionAreaCard() {
             <CardMedia
             component="img"
             height="140"
-            image="/src/assets/bg1.jpg"
-            alt="green iguana"
+            image= {img1}
+            alt="card pic"
             />
             <CardContent>
             <Typography gutterBottom variant="h5" component="div">
@@ -35,8 +38,8 @@ export default function MultiActionAreaCard() {
         <CardMedia
           component="img"
           height="140"
-          image="/src/assets/bg4.jpg"
-          alt="green iguana"
+          image={img2}
+          alt="card pic"
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="div">
@@ -53,8 +56,8 @@ export default function MultiActionAreaCard() {
         <CardMedia
           component="img"
           height="140"
-          image="/src/assets/bg3.jpg"
-          alt="green iguana"
+          image={img3}
+          alt="card pic"
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="div">
@@ -66,12 +69,7 @@ export default function MultiActionAreaCard() {
             70,000 מתנדבים<br/>
             מרכז לוגיסטי:<br/>
             שטח אחסון של כ-6,000 מ"ר<br/>
-            נפח קירור של כ-10,000 מ"ק<br/>
             67 כלי רכב לתפעול והובלת מזון<br/>
-            33,595 טונות של מזון סופק לנזקקים<br/>
-            100% מזון בריא<br/>
-            296 עמותות ובתי תמחוי אשר מקבלות מאיתנו את המזון ומעבירות אותו לכ-333,000 נתמכים<br/>
-            325 סדנאות תזונה בריאה לאוכלוסיות בסיכון<br/>
             </Typography>
         </CardContent>
     </Card>
